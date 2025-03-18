@@ -14,11 +14,11 @@
   padding-top: 15px;
 
   @bottom-left {
-    border-top: 1px solid #118BD6;
+    border-top: 1px solid black;
     content: element(ats-footerLeft);
   }
   @bottom-right {
-    border-top: 1px solid #118BD6;
+    border-top: 1px solid black;
     /*     content: counter(page) ' / ' counter(pages);*/
     content: element(ats-footerRight);
     font-size: 8pt;
@@ -86,7 +86,7 @@ thead {
 }
 
 .ats-headerLeft .ats-company-details .ats-top-title {
-  color: #007BC7;
+  color: #ff3b3b;
 }
 
 .ats-headerRight {
@@ -181,11 +181,18 @@ table.ats-table-last-td-yellow td:last-child {
   width: 100%;
 }
 
-.ats-page .ats-last {
+.ats-last {
   border-bottom-style: solid;
-  border-bottom-color: #007BC7;
+  border-bottom-color: black;
   border-width: 0.5px;
-  padding-bottom: 10px;
+  padding-bottom: 1px;
+}
+
+.ats-last2 {
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-width: 0.5px;
+  padding: 1px;
 }
 
 .ats-page .ats-container p {
@@ -245,7 +252,7 @@ table.ats-table-last-td-yellow td:last-child {
 }
 
 .ats-page .ats-header-without-tab {
-  padding-top: 25px;
+  padding-top: 100px;
   font-size: 13px;
   line-height: 15px;
   padding-bottom: 5px;

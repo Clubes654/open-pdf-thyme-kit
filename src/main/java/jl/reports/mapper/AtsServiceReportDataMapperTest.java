@@ -3,9 +3,10 @@ package jl.reports.mapper;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import jl.reports.atsservice.AtsServiceReportAircraftAssetsData;
-import jl.reports.atsservice.AtsServiceReportAircraftAssetsData.AtsServiceReportAircraftAssetsDataBuilder;
 import jl.reports.atsservice.AtsServiceReportData;
 import jl.reports.atsservice.AtsServiceReportData.AtsServiceReportDataBuilder;
+import jl.reports.atsservice.ResponsiblePerson;
+import jl.reports.atsservice.ServiceHistory;
 import jl.reports.common.PdfBasicInfoReportData;
 import jl.reports.common.PdfBasicInfoReportData.PdfBasicInfoReportDataBuilder;
 import jl.reports.dto.atsservice.AtsServiceReportAircraftAssetsDTO;
@@ -46,20 +47,37 @@ public class AtsServiceReportDataMapperTest {
       .build();
 
   public static final Function<AtsServiceReportAircraftAssetsDTO, AtsServiceReportAircraftAssetsData>
-          TO_AIRCRAFT_ASSETS = aircraftAssetsAxDTO -> AtsServiceReportAircraftAssetsDataBuilder.builder()
-          .make(aircraftAssetsAxDTO.getMake())
-          .model(aircraftAssetsAxDTO.getModel())
-          .tailNumber(aircraftAssetsAxDTO.getTailNumber())
-          .serialNumber(aircraftAssetsAxDTO.getSerialNumber())
-          .registration(aircraftAssetsAxDTO.getRegistration())
-          .yearOfManufacture(aircraftAssetsAxDTO.getYearOfManufacture())
-          .lastMaintenance(aircraftAssetsAxDTO.getLastMaintenance())
-          .status(aircraftAssetsAxDTO.getStatus())
-          .maintenanceDue(aircraftAssetsAxDTO.getMaintenanceDue())
-          .location(aircraftAssetsAxDTO.getLocation())
-          .garageNumber(aircraftAssetsAxDTO.getGarageNumber())
-          .hoursFlown(aircraftAssetsAxDTO.getHoursFlown())
-          .build();
+      TO_AIRCRAFT_ASSETS = aircraftAssetsDTO -> AtsServiceReportAircraftAssetsData.AtsServiceReportAircraftAssetsDataBuilder.builder()
+      .make(aircraftAssetsDTO.getMake())
+      .model(aircraftAssetsDTO.getModel())
+      .tailNumber(aircraftAssetsDTO.getTailNumber())
+      .serialNumber(aircraftAssetsDTO.getSerialNumber())
+      .registration(aircraftAssetsDTO.getRegistration())
+      .yearOfManufacture(aircraftAssetsDTO.getYearOfManufacture())
+      .lastMaintenance(aircraftAssetsDTO.getLastMaintenance())
+      .status(aircraftAssetsDTO.getStatus())
+      .maintenanceDue(aircraftAssetsDTO.getMaintenanceDue())
+      .location(aircraftAssetsDTO.getLocation())
+      .garageNumber(aircraftAssetsDTO.getGarageNumber())
+      .hoursFlown(aircraftAssetsDTO.getHoursFlown())
+      .serviceHistory(aircraftAssetsDTO.getServiceHistory() == null ? null :
+          aircraftAssetsDTO.getServiceHistory().stream()
+              .map(serviceDTO -> ServiceHistory.ServiceHistoryBuilder.builder()
+                  .date(serviceDTO.getDate())
+                  .type(serviceDTO.getType())
+                  .cost(serviceDTO.getCost())
+                  .build()
+              ).collect(Collectors.toList()))
+      .responsiblePerson(aircraftAssetsDTO.getResponsiblePerson() == null ? null :
+          ResponsiblePerson.ResponsiblePersonBuilder.builder()
+              .name(aircraftAssetsDTO.getResponsiblePerson().getName())
+              .phone(aircraftAssetsDTO.getResponsiblePerson().getPhone())
+              .email(aircraftAssetsDTO.getResponsiblePerson().getEmail())
+              .build()
+      )
+      .maintenanceCost(aircraftAssetsDTO.getMaintenanceCost())
+      .build();
+
 
   public AtsServiceReportData apply(AtsServiceReportDTO reportAxDTO) {
     return AtsServiceReportDataBuilder.builder()

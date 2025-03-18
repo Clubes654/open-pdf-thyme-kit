@@ -1,6 +1,7 @@
 package jl.reports.atsservice;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class AtsServiceReportAircraftAssetsData {
 
@@ -10,12 +11,15 @@ public class AtsServiceReportAircraftAssetsData {
   private final String serialNumber;
   private final String registration;
   private final Integer yearOfManufacture;
-  private final LocalDate lastMaintenance;
+  private final LocalDateTime lastMaintenance;
   private final String status;
-  private final LocalDate maintenanceDue;
+  private final LocalDateTime maintenanceDue;
   private final String location;
   private final String garageNumber;
   private final Integer hoursFlown;
+  private final List<ServiceHistory> serviceHistory;
+  private final ResponsiblePerson responsiblePerson;
+  private final Double maintenanceCost;
 
   public AtsServiceReportAircraftAssetsData(AtsServiceReportAircraftAssetsDataBuilder builder) {
     this.make = builder.make;
@@ -30,6 +34,9 @@ public class AtsServiceReportAircraftAssetsData {
     this.location = builder.location;
     this.garageNumber = builder.garageNumber;
     this.hoursFlown = builder.hoursFlown;
+    this.serviceHistory = builder.serviceHistory;
+    this.responsiblePerson = builder.responsiblePerson;
+    this.maintenanceCost = builder.maintenanceCost;
   }
 
   public String getMake() {
@@ -60,7 +67,7 @@ public class AtsServiceReportAircraftAssetsData {
     return yearOfManufacture;
   }
 
-  public LocalDate getLastMaintenance() {
+  public LocalDateTime  getLastMaintenance() {
     return lastMaintenance;
   }
 
@@ -68,7 +75,7 @@ public class AtsServiceReportAircraftAssetsData {
     return status;
   }
 
-  public LocalDate getMaintenanceDue() {
+  public LocalDateTime  getMaintenanceDue() {
     return maintenanceDue;
   }
 
@@ -80,42 +87,36 @@ public class AtsServiceReportAircraftAssetsData {
     return garageNumber;
   }
 
+  public List<ServiceHistory> getServiceHistory() {
+    return serviceHistory;
+  }
+
+  public ResponsiblePerson getResponsiblePerson() {
+    return responsiblePerson;
+  }
+
+  public Double getMaintenanceCost() {
+    return maintenanceCost;
+  }
+
   @Override
   public String toString() {
-    return "AtsServiceReportAircraftAssetsData{"
-        + "make='"
-        + make
-        + '\''
-        + ", model='"
-        + model
-        + '\''
-        + ", tailNumber='"
-        + tailNumber
-        + '\''
-        + ", serialNumber='"
-        + serialNumber
-        + '\''
-        + ", registration='"
-        + registration
-        + '\''
-        + ", yearOfManufacture="
-        + yearOfManufacture
-        + ", lastMaintenance="
-        + lastMaintenance
-        + ", status='"
-        + status
-        + '\''
-        + ", maintenanceDue="
-        + maintenanceDue
-        + ", location='"
-        + location
-        + '\''
-        + ", garageNumber='"
-        + garageNumber
-        + '\''
-        + ", hoursFlown="
-        + hoursFlown
-        + '}';
+    return "AtsServiceReportAircraftAssetsData{" +
+        "make='" + make + '\'' +
+        ", model='" + model + '\'' +
+        ", tailNumber='" + tailNumber + '\'' +
+        ", serialNumber='" + serialNumber + '\'' +
+        ", registration='" + registration + '\'' +
+        ", yearOfManufacture=" + yearOfManufacture +
+        ", lastMaintenance=" + lastMaintenance +
+        ", status='" + status + '\'' +
+        ", maintenanceDue=" + maintenanceDue +
+        ", location='" + location + '\'' +
+        ", garageNumber='" + garageNumber + '\'' +
+        ", hoursFlown=" + hoursFlown +
+        ", serviceHistory=" + serviceHistory +
+        ", responsiblePerson=" + responsiblePerson +
+        '}';
   }
 
   public static final class AtsServiceReportAircraftAssetsDataBuilder {
@@ -126,12 +127,15 @@ public class AtsServiceReportAircraftAssetsData {
     private String serialNumber;
     private String registration;
     private Integer yearOfManufacture;
-    private LocalDate lastMaintenance;
+    private LocalDateTime lastMaintenance;
     private String status;
-    private LocalDate maintenanceDue;
+    private LocalDateTime maintenanceDue;
     private String location;
     private String garageNumber;
     private Integer hoursFlown;
+    private List<ServiceHistory> serviceHistory;
+    private ResponsiblePerson responsiblePerson;
+    private Double maintenanceCost;
 
     private AtsServiceReportAircraftAssetsDataBuilder() {}
 
@@ -169,7 +173,7 @@ public class AtsServiceReportAircraftAssetsData {
       return this;
     }
 
-    public AtsServiceReportAircraftAssetsDataBuilder lastMaintenance(LocalDate lastMaintenance) {
+    public AtsServiceReportAircraftAssetsDataBuilder lastMaintenance(LocalDateTime lastMaintenance) {
       this.lastMaintenance = lastMaintenance;
       return this;
     }
@@ -179,7 +183,7 @@ public class AtsServiceReportAircraftAssetsData {
       return this;
     }
 
-    public AtsServiceReportAircraftAssetsDataBuilder maintenanceDue(LocalDate maintenanceDue) {
+    public AtsServiceReportAircraftAssetsDataBuilder maintenanceDue(LocalDateTime maintenanceDue) {
       this.maintenanceDue = maintenanceDue;
       return this;
     }
@@ -196,6 +200,21 @@ public class AtsServiceReportAircraftAssetsData {
 
     public AtsServiceReportAircraftAssetsDataBuilder hoursFlown(Integer hoursFlown) {
       this.hoursFlown = hoursFlown;
+      return this;
+    }
+
+    public AtsServiceReportAircraftAssetsDataBuilder serviceHistory(List<ServiceHistory> serviceHistory) {
+      this.serviceHistory = serviceHistory;
+      return this;
+    }
+
+    public AtsServiceReportAircraftAssetsDataBuilder responsiblePerson(ResponsiblePerson responsiblePerson) {
+      this.responsiblePerson = responsiblePerson;
+      return this;
+    }
+
+    public AtsServiceReportAircraftAssetsDataBuilder maintenanceCost(Double maintenanceCost) {
+      this.maintenanceCost = maintenanceCost;
       return this;
     }
 

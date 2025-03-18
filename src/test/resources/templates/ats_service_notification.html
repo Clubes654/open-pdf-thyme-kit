@@ -16,7 +16,7 @@
              class="ats-base-text ats-bold-text">
         </div>
         <div class="ats-date-name">
-            <div class="ats-date">21.3.2024</div>
+            <div class="ats-date" th:text="${#calendars.format(#calendars.createNow(), 'dd.MM.yyyy')}"></div>
         </div>
     </div>
     <div class="ats-page" style="page-break-before: always;">
@@ -112,53 +112,84 @@
             <br/>
         </div>
 
-        <th:block th:each="aircraftAsset : ${reportData.aircraftAssets}">
-            <div class="ats-header-without-tab"
-                 th:text="${aircraftAsset.make} + ' | ' + ${aircraftAsset.model} + ' | ' + ${aircraftAsset.tailNumber}+ ' | ' + ${aircraftAsset.serialNumber}">
-            </div>
-            <div class="ats-container">
-                <table class="ats-table ats-table-td-white-blue">
-                    <thead>
-                    <tr>
-                        <th th:text="#{report.ats.service.notification.garageNumber}"></th>
-                        <th th:text="#{report.ats.service.notification.registration}"></th>
-                        <th th:text="#{report.ats.service.notification.yearOfManufacture}"></th>
-                        <th th:text="#{report.ats.service.notification.lastMaintenance}"></th>
-                        <th th:text="#{report.ats.service.notification.status}"></th>
-                        <th th:text="#{report.ats.service.notification.MaintenanceDue}"></th>
-                        <th th:text="#{report.ats.service.notification.location}"></th>
-                        <th>
-                            <th:block th:text="#{report.ats.service.notification.hoursFlown}"></th:block>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td th:text="${aircraftAsset.garageNumber}"></td>
-                        <td th:text="${aircraftAsset.registration}"></td>
-                        <td th:text="${aircraftAsset.yearOfManufacture}"></td>
-                        <td th:text="${aircraftAsset.lastMaintenance}"></td>
-                        <td th:text="${aircraftAsset.status}"></td>
-                        <td th:text="${aircraftAsset.MaintenanceDue}"></td>
-                        <td th:text="${aircraftAsset.location}"></td>
-                        <td th:text="${aircraftAsset.hoursFlown}"></td>
-                    </tr>
-                    </tbody>
-                </table>
 
-                <div class="ats-rectangle-under-table ats-bold-text">
-                    <span th:text="#{report.ats.service.notification.maintenanceCost}"
-                          class="ats-rectangle-name"></span>
-                    <span class="ats-total-price">25000 €</span>
-                </div>
-            </div>
-        </th:block>
+      <th:block th:each="aircraftAsset : ${reportData.aircraftAssets}" >
+        <div class="ats-header-without-tab"
+             th:text="${aircraftAsset.make} + ' | ' + ${aircraftAsset.model} + ' | ' + ${aircraftAsset.tailNumber}+ ' | ' + ${aircraftAsset.serialNumber}">
+        </div>
+        <div class="ats-container">
+          <table class="ats-table ats-table-td-white-blue">
+            <thead>
+            <tr>
+              <th th:text="#{report.ats.service.notification.garageNumber}"></th>
+              <th th:text="#{report.ats.service.notification.registration}"></th>
+              <th th:text="#{report.ats.service.notification.yearOfManufacture}"></th>
+              <th th:text="#{report.ats.service.notification.lastMaintenance}"></th>
+              <th th:text="#{report.ats.service.notification.status}"></th>
+              <th th:text="#{report.ats.service.notification.MaintenanceDue}"></th>
+              <th th:text="#{report.ats.service.notification.location}"></th>
+              <th th:text="#{report.ats.service.notification.hoursFlown}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td th:text="${aircraftAsset.garageNumber}"></td>
+              <td th:text="${aircraftAsset.registration}"></td>
+              <td th:text="${aircraftAsset.yearOfManufacture}"></td>
+              <td th:text="${#temporals.format(aircraftAsset.lastMaintenance, 'dd.MM.yyyy HH:mm')}"></td>
+              <td th:text="${aircraftAsset.status}"></td>
+              <td th:text="${#temporals.format(aircraftAsset.maintenanceDue, 'dd.MM.yyyy HH:mm')}"></td>
+              <td th:text="${aircraftAsset.location}"></td>
+              <td th:text="${aircraftAsset.hoursFlown}"></td>
+            </tr>
+            </tbody>
+          </table>
 
-        <div class="ats-prices-volume-sum">
+          <div class="ats-table-name" th:text="#{report.ats.service.history}"></div>
+          <table class="ats-table-without-border">
+            <tr>
+              <th th:text="#{report.ats.service.history.date}"></th>
+              <th th:text="#{report.ats.service.history.type}"></th>
+              <th th:text="#{report.ats.service.history.cost}"></th>
+            </tr>
+            <tr th:each="service : ${aircraftAsset.serviceHistory}">
+              <td th:text="${#temporals.format(service.date, 'dd.MM.yyyy HH:mm')}"></td>
+              <td th:text="${service.type}"></td>
+              <td th:text="${service.cost} + ' €'"></td>
+            </tr>
+          </table>
+
+          <div class="ats-table-name" th:if="${aircraftAsset.responsiblePerson != null}"
+               th:text="#{report.ats.responsible.person}"></div>
+          <table class="ats-table-without-border" th:if="${aircraftAsset.responsiblePerson != null}">
+            <tr>
+              <th th:text="#{report.ats.service.notification.name}"></th>
+              <th th:text="#{report.ats.service.notification.phone}"></th>
+              <th th:text="#{report.ats.service.notification.email}"></th>
+            </tr>
+            <tr>
+              <td th:text="${aircraftAsset.responsiblePerson.name}"></td>
+              <td th:text="${aircraftAsset.responsiblePerson.phone}"></td>
+              <td th:text="${aircraftAsset.responsiblePerson.email}"></td>
+            </tr>
+          </table>
+
+          <div class="ats-rectangle-under-table ats-bold-text ">
+            <span th:text="#{report.ats.service.notification.maintenanceCost}" class="ats-rectangle-name"></span>
+            <span class="ats-total-price" th:if="${aircraftAsset.maintenanceCost != null}"
+                  th:text="${aircraftAsset.maintenanceCost} + ' €'"></span>
+            <span class="ats-total-price" th:if="${aircraftAsset.maintenanceCost == null}">N/A</span>
+          </div>
+        </div>
+        <div class="ats-last2"></div>
+      </th:block>
+
+
+      <div class="ats-prices-volume-sum">
             <div class="ats-rectangle-table-blue">
                 <div th:text="#{report.ats.service.notification.realized.expenses}" class="ats-rectangle-name"></div>
                 <br />
-                <div class="ats-total-price" th:text="${reportData.realizedCosts} + ' €'">5750 €</div>
+                <div class="ats-total-price" th:text="${reportData.realizedCosts} + ' €'"></div>
             </div>
         </div>
     </div>

@@ -1,20 +1,20 @@
 {
-  "contractId": "2116487",
-  "begins": "2021-07-01T12:00:00",
-  "ends": "2031-06-30T12:00:00",
+  "contractId": "667484",
+  "begins": "2023-07-01T12:00:00",
+  "ends": "2028-06-30T12:00:00",
   "aviationContractType": "TechPlus",
   "serviceProvider": {
     "name": "AeroTech Solutions Ltd",
     "organizationId": "1234567-8",
     "vatId": "FI12345678",
     "homeLocation": "Aviation Avenue",
-    "phoneNumber": "1234",
+    "phoneNumber": "+420777888999",
     "address": "123 Aviation Avenue\nKarvina, Czech Republic"
   },
   "aircraftOwner": {
     "accountName": "FRANCK TUULA",
     "customerId": "187386",
-    "phoneNumber": "1234",
+    "phoneNumber": "+420777888999",
     "vatId": "2148216-8",
     "address": "--\nSKYHIGH STREET 11 B 23\n02700 CLOUDTOWN"
   },
@@ -27,12 +27,30 @@
       "serialNumber": "123456",
       "registration": "OH-LVM",
       "yearOfManufacture": 2017,
-      "lastMaintenance": "2023-11-20",
+      "lastMaintenance": "2023-11-20T15:30:00",
       "status": "Operational",
-      "maintenanceDue": "2024-11-20",
+      "maintenanceDue": "2024-11-20T10:00:00",
       "location": "Prague",
       "garageNumber": "G1",
-      "hoursFlown": 5000
+      "hoursFlown": 5000,
+      "maintenanceCost": 7500.00,
+      "serviceHistory": [
+        {
+          "date": "2023-01-15T08:30:00",
+          "type": "Engine Overhaul",
+          "cost": 5000.00
+        },
+        {
+          "date": "2023-06-10T12:45:00",
+          "type": "Avionics Upgrade",
+          "cost": 7500.00
+        }
+      ],
+      "responsiblePerson": {
+        "name": "John Doe",
+        "phone": "+420123456789",
+        "email": "john.doe@aerotech.com"
+      }
     },
     {
       "make": "Airbus",
@@ -41,12 +59,25 @@
       "serialNumber": "789012",
       "registration": "OH-ABC",
       "yearOfManufacture": 2015,
-      "lastMaintenance": "2023-10-15",
+      "lastMaintenance": "2023-10-15T11:20:00",
       "status": "Operational",
-      "maintenanceDue": "2024-10-15",
+      "maintenanceDue": "2024-10-15T12:00:00",
       "location": "Brno",
       "garageNumber": "G2",
-      "hoursFlown": 7000
+      "hoursFlown": 7000,
+      "maintenanceCost": 10000.00,
+      "serviceHistory": [
+        {
+          "date": "2023-01-25T09:30:00",
+          "type": "Landing Gear Replacement",
+          "cost": 10000.00
+        }
+      ],
+      "responsiblePerson": {
+        "name": "Alice Smith",
+        "phone": "+420987654321",
+        "email": "alice.smith@aerotech.com"
+      }
     },
     {
       "make": "Embraer",
@@ -55,12 +86,25 @@
       "serialNumber": "567890",
       "registration": "OH-DEF",
       "yearOfManufacture": 2019,
-      "lastMaintenance": "2023-12-15",
+      "lastMaintenance": "2023-12-15T16:00:00",
       "status": "Operational",
-      "maintenanceDue": "2024-12-15",
+      "maintenanceDue": "2024-12-15T14:00:00",
       "location": "Ostrava",
       "garageNumber": "G3",
-      "hoursFlown": 4000
+      "hoursFlown": 4000,
+      "maintenanceCost": 6500.00,
+      "serviceHistory": [
+        {
+          "date": "2023-05-12T07:00:00",
+          "type": "Hydraulic System Check",
+          "cost": 6500.00
+        }
+      ],
+      "responsiblePerson": {
+        "name": "Robert Brown",
+        "phone": "+420777000888",
+        "email": "robert.brown@aerotech.com"
+      }
     },
     {
       "make": "Bombardier",
@@ -69,13 +113,26 @@
       "serialNumber": "345678",
       "registration": "OH-GHI",
       "yearOfManufacture": 2020,
-      "lastMaintenance": "2024-01-20",
+      "lastMaintenance": "2024-01-20T09:10:00",
       "status": "Maintenance Required",
-      "maintenanceDue": "2024-07-20",
+      "maintenanceDue": "2024-07-20T13:45:00",
       "location": "Pardubice",
       "garageNumber": "G4",
-      "hoursFlown": 3000
+      "hoursFlown": 3000,
+      "maintenanceCost": 4000.00,
+      "serviceHistory": [
+        {
+          "date": "2023-08-30T10:15:00",
+          "type": "Software Update",
+          "cost": 4000.00
+        }
+      ],
+      "responsiblePerson": {
+        "name": "Michael Green",
+        "phone": "+420555999777",
+        "email": "michael.green@aerotech.com"
+      }
     }
   ],
-  "realizedCosts": 20000
+  "realizedCosts": 28000.00
 }

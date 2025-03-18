@@ -1,21 +1,21 @@
 .ats-rectangle-short {
   width: 2px;
   height: 24px;
-  background: #188ed7;
+  background: #008e34;
   float: left;
 }
 
 .ats-rectangle-middle {
   width: 2px;
   height: 48px;
-  background: #188ed7;
+  background: #008e34;
   float: left;
 }
 
 .ats-rectangle-long {
   width: 6px;
   height: 75px;
-  background: #188ed7;
+  background: #008e34;
   float: left;
 }
 
@@ -25,12 +25,12 @@
   height: 128px;
   left: 56px;
   top: 524px;
-  background: #188ed7;
+  background: #008e34;
 }
 
 
 .ats-rectangle-light-blue {
-  background-color: #e1f1fc;
+  background-color: rgba(0, 243, 84, 0.48);
 }
 
 .ats-rectangle-next-table {
@@ -50,7 +50,7 @@
 }
 
 .ats-rectangle-under-table span {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 10px;
 }
 
@@ -148,7 +148,7 @@
   margin-top: 20px;
   width: 350px;
   height: 60px;
-  background-color: #d6e8ff;
+  background-color: #eefff6;
   float: right;
   padding: 10px;
   font-family: "Helvetica Neue Bold";

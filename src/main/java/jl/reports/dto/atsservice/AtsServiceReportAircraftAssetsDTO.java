@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class AtsServiceReportAircraftAssetsDTO {
@@ -18,12 +19,15 @@ public final class AtsServiceReportAircraftAssetsDTO {
   private final String serialNumber;
   private final String registration;
   private final int yearOfManufacture;
-  private final LocalDate lastMaintenance;
+  private final LocalDateTime lastMaintenance;
   private final String status;
-  private final LocalDate maintenanceDue;
+  private final LocalDateTime maintenanceDue;
   private final String location;
   private final String garageNumber;
   private final int hoursFlown;
+  private final Double maintenanceCost;
+  private final List<ServiceHistoryDTO> serviceHistory;
+  private final ResponsiblePersonDTO responsiblePerson;
 
   @JsonCreator
   public AtsServiceReportAircraftAssetsDTO(
@@ -33,16 +37,19 @@ public final class AtsServiceReportAircraftAssetsDTO {
       @JsonProperty("serialNumber") String serialNumber,
       @JsonProperty("registration") String registration,
       @JsonProperty("yearOfManufacture") int yearOfManufacture,
-      @JsonDeserialize(using = LocalDateDeserializer.class)
-      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-      @JsonProperty("lastMaintenance") LocalDate lastMaintenance,
+      @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+      @JsonProperty("lastMaintenance") LocalDateTime lastMaintenance,
       @JsonProperty("status") String status,
-      @JsonDeserialize(using = LocalDateDeserializer.class)
-      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-      @JsonProperty("maintenanceDue") LocalDate maintenanceDue,
+      @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+      @JsonProperty("maintenanceDue") LocalDateTime maintenanceDue,
       @JsonProperty("location") String location,
       @JsonProperty("garageNumber") String garageNumber,
-      @JsonProperty("hoursFlown") int hoursFlown) {
+      @JsonProperty("hoursFlown") int hoursFlown,
+      @JsonProperty("maintenanceCost") Double maintenanceCost,
+      @JsonProperty("serviceHistory") List<ServiceHistoryDTO> serviceHistory,
+      @JsonProperty("responsiblePerson") ResponsiblePersonDTO responsiblePerson) {
     this.make = make;
     this.model = model;
     this.tailNumber = tailNumber;
@@ -55,6 +62,9 @@ public final class AtsServiceReportAircraftAssetsDTO {
     this.location = location;
     this.garageNumber = garageNumber;
     this.hoursFlown = hoursFlown;
+    this.maintenanceCost = maintenanceCost;
+    this.serviceHistory = serviceHistory;
+    this.responsiblePerson = responsiblePerson;
   }
 
   public String getMake() {
@@ -81,7 +91,7 @@ public final class AtsServiceReportAircraftAssetsDTO {
     return yearOfManufacture;
   }
 
-  public LocalDate getLastMaintenance() {
+  public LocalDateTime  getLastMaintenance() {
     return lastMaintenance;
   }
 
@@ -89,7 +99,7 @@ public final class AtsServiceReportAircraftAssetsDTO {
     return status;
   }
 
-  public LocalDate getMaintenanceDue() {
+  public LocalDateTime  getMaintenanceDue() {
     return maintenanceDue;
   }
 
@@ -105,41 +115,36 @@ public final class AtsServiceReportAircraftAssetsDTO {
     return hoursFlown;
   }
 
+  public Double getMaintenanceCost() {
+    return maintenanceCost;
+  }
+
+  public List<ServiceHistoryDTO> getServiceHistory() {
+    return serviceHistory;
+  }
+
+  public ResponsiblePersonDTO getResponsiblePerson() {
+    return responsiblePerson;
+  }
+
   @Override
   public String toString() {
-    return "AtsServiceReportAircraftAssetsAxDTO{"
-        + "make='"
-        + make
-        + '\''
-        + ", model='"
-        + model
-        + '\''
-        + ", tailNumber='"
-        + tailNumber
-        + '\''
-        + ", serialNumber='"
-        + serialNumber
-        + '\''
-        + ", registration='"
-        + registration
-        + '\''
-        + ", yearOfManufacture="
-        + yearOfManufacture
-        + ", lastMaintenance="
-        + lastMaintenance
-        + ", status='"
-        + status
-        + '\''
-        + ", maintenanceDue="
-        + maintenanceDue
-        + ", location='"
-        + location
-        + '\''
-        + ", garageNumber='"
-        + garageNumber
-        + '\''
-        + ", hoursFlown="
-        + hoursFlown
-        + '}';
+    return "AtsServiceReportAircraftAssetsDTO{" +
+        "make='" + make + '\'' +
+        ", model='" + model + '\'' +
+        ", tailNumber='" + tailNumber + '\'' +
+        ", serialNumber='" + serialNumber + '\'' +
+        ", registration='" + registration + '\'' +
+        ", yearOfManufacture=" + yearOfManufacture +
+        ", lastMaintenance=" + lastMaintenance +
+        ", status='" + status + '\'' +
+        ", maintenanceDue=" + maintenanceDue +
+        ", location='" + location + '\'' +
+        ", garageNumber='" + garageNumber + '\'' +
+        ", hoursFlown=" + hoursFlown +
+        ", maintenanceCost=" + maintenanceCost +
+        ", serviceHistory=" + serviceHistory +
+        ", responsiblePerson=" + responsiblePerson +
+        '}';
   }
 }
