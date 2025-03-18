@@ -10,7 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import java.time.LocalDate;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class AtsServiceReportAircraftAssetsAxDTO {
+public final class AtsServiceReportAircraftAssetsDTO {
 
   private final String make;
   private final String model;
@@ -26,7 +26,7 @@ public final class AtsServiceReportAircraftAssetsAxDTO {
   private final int hoursFlown;
 
   @JsonCreator
-  public AtsServiceReportAircraftAssetsAxDTO(
+  public AtsServiceReportAircraftAssetsDTO(
       @JsonProperty("make") String make,
       @JsonProperty("model") String model,
       @JsonProperty("tailNumber") String tailNumber,

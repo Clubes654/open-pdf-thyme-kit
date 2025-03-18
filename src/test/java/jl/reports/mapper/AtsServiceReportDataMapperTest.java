@@ -8,15 +8,15 @@ import jl.reports.atsservice.AtsServiceReportData;
 import jl.reports.atsservice.AtsServiceReportData.AtsServiceReportDataBuilder;
 import jl.reports.common.PdfBasicInfoReportData;
 import jl.reports.common.PdfBasicInfoReportData.PdfBasicInfoReportDataBuilder;
-import jl.reports.dto.atsservice.AtsServiceReportAircraftAssetsAxDTO;
-import jl.reports.dto.atsservice.AtsServiceReportAircraftOwnerAxDTO;
-import jl.reports.dto.atsservice.AtsServiceReportAxDTO;
-import jl.reports.dto.atsservice.AtsServiceReportContactPersonAxDTO;
-import jl.reports.dto.atsservice.AtsServiceReportServiceProviderAxDTO;
+import jl.reports.dto.atsservice.AtsServiceReportAircraftAssetsDTO;
+import jl.reports.dto.atsservice.AtsServiceReportAircraftOwnerDTO;
+import jl.reports.dto.atsservice.AtsServiceReportDTO;
+import jl.reports.dto.atsservice.AtsServiceReportContactPersonDTO;
+import jl.reports.dto.atsservice.AtsServiceReportServiceProviderDTO;
 
 public class AtsServiceReportDataMapperTest {
 
-  public static final Function<AtsServiceReportAircraftOwnerAxDTO, PdfBasicInfoReportData>
+  public static final Function<AtsServiceReportAircraftOwnerDTO, PdfBasicInfoReportData>
       TO_AIRCRAFT_OWNER = aircraftOwnerAxDTO -> PdfBasicInfoReportDataBuilder.builder()
       .accountName(aircraftOwnerAxDTO.getAccountName())
       .customerId(aircraftOwnerAxDTO.getCustomerId())
@@ -25,7 +25,7 @@ public class AtsServiceReportDataMapperTest {
       .vatId(aircraftOwnerAxDTO.getVatId())
       .build();
 
-  public static final Function<AtsServiceReportContactPersonAxDTO, PdfBasicInfoReportData>
+  public static final Function<AtsServiceReportContactPersonDTO, PdfBasicInfoReportData>
       TO_CONTACT_PERSON = contactPersonAxDTO ->
       contactPersonAxDTO == null ? null :
           PdfBasicInfoReportDataBuilder.builder()
@@ -35,7 +35,7 @@ public class AtsServiceReportDataMapperTest {
               .email(contactPersonAxDTO.getEmail())
               .build();
 
-  public static final Function<AtsServiceReportServiceProviderAxDTO, PdfBasicInfoReportData>
+  public static final Function<AtsServiceReportServiceProviderDTO, PdfBasicInfoReportData>
       TO_SERVICE_PROVIDER = serviceProviderAxDTO -> PdfBasicInfoReportDataBuilder.builder()
       .name(serviceProviderAxDTO.getName())
       .address(serviceProviderAxDTO.getAddress())
@@ -45,7 +45,7 @@ public class AtsServiceReportDataMapperTest {
       .homeLocation(serviceProviderAxDTO.getHomeLocation())
       .build();
 
-  public static final Function<AtsServiceReportAircraftAssetsAxDTO, AtsServiceReportAircraftAssetsData>
+  public static final Function<AtsServiceReportAircraftAssetsDTO, AtsServiceReportAircraftAssetsData>
           TO_AIRCRAFT_ASSETS = aircraftAssetsAxDTO -> AtsServiceReportAircraftAssetsDataBuilder.builder()
           .make(aircraftAssetsAxDTO.getMake())
           .model(aircraftAssetsAxDTO.getModel())
@@ -61,7 +61,7 @@ public class AtsServiceReportDataMapperTest {
           .hoursFlown(aircraftAssetsAxDTO.getHoursFlown())
           .build();
 
-  public AtsServiceReportData apply(AtsServiceReportAxDTO reportAxDTO) {
+  public AtsServiceReportData apply(AtsServiceReportDTO reportAxDTO) {
     return AtsServiceReportDataBuilder.builder()
         .reportType(reportAxDTO.getAtsContractType())
         .contractId(reportAxDTO.getContractId())

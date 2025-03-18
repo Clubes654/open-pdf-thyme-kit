@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class AtsServiceReportAxDTO {
+public final class AtsServiceReportDTO {
 
   private final String atsContractType;
   private final String contractId;
@@ -23,22 +23,22 @@ public final class AtsServiceReportAxDTO {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
   private final LocalDateTime ends;
 
-  private final AtsServiceReportServiceProviderAxDTO serviceProvider;
-  private final AtsServiceReportAircraftOwnerAxDTO aircraftOwner;
-  private final AtsServiceReportContactPersonAxDTO contactPerson;
-  private final List<AtsServiceReportAircraftAssetsAxDTO> aircraftAssets;
+  private final AtsServiceReportServiceProviderDTO serviceProvider;
+  private final AtsServiceReportAircraftOwnerDTO aircraftOwner;
+  private final AtsServiceReportContactPersonDTO contactPerson;
+  private final List<AtsServiceReportAircraftAssetsDTO> aircraftAssets;
   private final Double realizedCosts;
 
   @JsonCreator
-  public AtsServiceReportAxDTO(
+  public AtsServiceReportDTO(
       @JsonProperty("aviationContractType") String atsContractType,
       @JsonProperty("contractId") String contractId,
       @JsonProperty("begins") LocalDateTime begins,
       @JsonProperty("ends") LocalDateTime ends,
-      @JsonProperty("serviceProvider") AtsServiceReportServiceProviderAxDTO serviceProvider,
-      @JsonProperty("aircraftOwner") AtsServiceReportAircraftOwnerAxDTO aircraftOwner,
-      @JsonProperty("contactPerson") AtsServiceReportContactPersonAxDTO contactPerson,
-      @JsonProperty("aircraftAssets") List<AtsServiceReportAircraftAssetsAxDTO> aircraftAssets,
+      @JsonProperty("serviceProvider") AtsServiceReportServiceProviderDTO serviceProvider,
+      @JsonProperty("aircraftOwner") AtsServiceReportAircraftOwnerDTO aircraftOwner,
+      @JsonProperty("contactPerson") AtsServiceReportContactPersonDTO contactPerson,
+      @JsonProperty("aircraftAssets") List<AtsServiceReportAircraftAssetsDTO> aircraftAssets,
       @JsonProperty("realizedCosts") Double realizedCosts) {
     this.atsContractType = atsContractType;
     this.contractId = contractId;
@@ -67,19 +67,19 @@ public final class AtsServiceReportAxDTO {
     return ends;
   }
 
-  public AtsServiceReportServiceProviderAxDTO getServiceProvider() {
+  public AtsServiceReportServiceProviderDTO getServiceProvider() {
     return serviceProvider;
   }
 
-  public AtsServiceReportAircraftOwnerAxDTO getAircraftOwner() {
+  public AtsServiceReportAircraftOwnerDTO getAircraftOwner() {
     return aircraftOwner;
   }
 
-  public AtsServiceReportContactPersonAxDTO getContactPerson() {
+  public AtsServiceReportContactPersonDTO getContactPerson() {
     return contactPerson;
   }
 
-  public List<AtsServiceReportAircraftAssetsAxDTO> getAircraftAssets() {
+  public List<AtsServiceReportAircraftAssetsDTO> getAircraftAssets() {
     return aircraftAssets;
   }
 
