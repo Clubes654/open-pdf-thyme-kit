@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import jl.reports.atsservice.AtsServiceReportData;
-import jl.reports.dto.atsservice.AtsServiceReportAxDTO;
+import jl.reports.dto.atsservice.AtsServiceReportDTO;
 import jl.reports.mapper.AtsServiceReportDataMapperTest;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.junit.Test;
@@ -23,12 +23,12 @@ public class TestAtsServiceNotification extends BasePDFReportTest {
 
   @Override
   protected void initializeData() {
-    AtsServiceReportAxDTO ri;
+    AtsServiceReportDTO ri;
     try {
       ri =
           new ObjectMapper()
               .readValue(
-                  new ClassPathResource(JSON_FILE_NAME).getFile(), AtsServiceReportAxDTO.class);
+                  new ClassPathResource(JSON_FILE_NAME).getFile(), AtsServiceReportDTO.class);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }

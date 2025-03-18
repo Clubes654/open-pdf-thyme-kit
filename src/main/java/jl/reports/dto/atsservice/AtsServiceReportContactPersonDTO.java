@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AtsServiceReportContactPersonAxDTO {
+public class AtsServiceReportContactPersonDTO {
     private final String name;
     private final String email;
     private final String phoneNumber;
     private final String address;
 
     @JsonCreator
-    public AtsServiceReportContactPersonAxDTO(
+    public AtsServiceReportContactPersonDTO(
             @JsonProperty("name") String name,
             @JsonProperty("email") String email,
             @JsonProperty("phoneNumber") String phoneNumber,
