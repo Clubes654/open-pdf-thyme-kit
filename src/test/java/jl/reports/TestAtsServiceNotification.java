@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import jl.reports.atsservice.AtsServiceReportData;
 import jl.reports.dto.atsservice.AtsServiceReportDTO;
 import jl.reports.mapper.AtsServiceReportDataMapperTest;
@@ -47,7 +46,7 @@ public class TestAtsServiceNotification extends BasePDFReportTest {
   public void testCheckMetaDataInPDF() {
     String expectedTitle = "Ats service report";
     String expectedAuthor = "AeroTech Solutions Ltd";
-    int expectedPages = 3;
+    int expectedPages = 4;
 
     try (PDDocument document = PDDocument.load(pdfFile)) {
       if (document.getDocumentInformation() != null) {
@@ -76,12 +75,6 @@ public class TestAtsServiceNotification extends BasePDFReportTest {
 
   @Override
   protected String createExpectedText() {
-    DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-    // TODO add expected text
-
-    // String expectedText = "??";
-
-    return " ";
+    return "667484";
   }
 }
